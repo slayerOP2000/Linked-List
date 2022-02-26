@@ -1,0 +1,57 @@
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* reverseBetween(ListNode* head, int left, int right) {
+        if(left == right)
+        {
+            return head;
+        }
+        ListNode* prev =NULL;
+        ListNode* curr = head;
+        for(int i=0;curr!=NULL && i<left-1;i++) // yahhaan pe boundry set krdiii gyii hain
+        {
+            prev = curr;
+            curr = curr->next;
+        }
+        ListNode* last = prev;
+        ListNode* end = curr;
+        int ele = right - left + 1;
+        ListNode* forward = curr->next;// jismei reverse honaa hai wo yeh element honge
+        for(int i = 0;curr!=NULL && i<ele;i++)
+        {
+            //simply reverse 
+            curr->next = prev;
+            prev = curr;
+            curr = forward;
+            
+        
+        if(forward!=NULL)
+        {
+            forward = forward->next;
+        }
+        }
+        if(last!=NULL)  //edge cases
+ {
+     last->next=prev;   //jo upar se updated prev aya jo right most element hoga
+     
+ }
+ else
+ {
+     head=prev;
+ }
+ 
+ end->next=curr;  //curr will be updated toh the r+1th element so joining newend to that
+ return head;
+}
+        
+    
+};
