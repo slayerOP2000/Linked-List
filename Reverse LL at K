@@ -1,0 +1,25 @@
+Node* kReverse(Node* head, int k) {
+    // Write your code here.
+    if(head == NULL) // I am checking whether the list is empty
+    {
+        return NULL; // then i am simply returning NULL
+    }
+    Node* next = NULL;  // I am point next = NULL
+    Node* curr = head;  // I am pointing curr = head
+    Node* prev = NULL;
+    int count = 0;
+    while(curr!=NULL && count<k)
+    {
+        next = curr->next;
+        curr->next = prev;
+        prev = curr;
+        curr = next;
+        count++;
+    }
+    if(next!=NULL)
+    {
+        head->next = kReverse(next,k);// simple recursive call we took (next) because we want to reverse remaining List. 
+    }
+    return prev;
+        
+}
