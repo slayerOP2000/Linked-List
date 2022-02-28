@@ -1,0 +1,18 @@
+//Yeh Algo yeh darshatii hai ki hum logg do pointer slow aur fast ko saath rkhenge fir jo start hai wo ek agee bdegaa aur jo fast hai wo 2 times aage bdegaa.And if the meet then
+loop is present otherwise not present.
+
+
+bool detectLoop(Node* head)
+    {
+        // your code here
+        Node * slow = head;//taking slow
+        Node * fast = head;//taking head
+        while(fast!=NULL && fast->next!=NULL){//jbtk fast is not equal to NULL and fast is not equal to NULL
+            
+            slow = slow->next; 1step agey bdega
+            fast = fast->next->next; 2 step agey bdega
+            if(slow==fast){ jb equal hojayenge mill jayega loop
+                return true;
+            }
+        }
+        return false;
