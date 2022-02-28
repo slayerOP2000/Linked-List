@@ -1,3 +1,34 @@
 // Sbse phele toh bhai yeh dekho ki loop hai bhi yaaa nhi ab wo kaise dekho ge toh first we will use floyd detection algo to find the loop and after that we will move our two pointers 
 slow and fast by 1 which are used in floyd detection 
 
+bool detectLoop(Node* head)
+    {
+        // your code here
+        Node * slow = head;//taking slow
+        Node * fast = head;//taking head
+        while(fast!=NULL && fast->next!=NULL){//jbtk fast is not equal to NULL and fast is not equal to NULL
+            
+            slow = slow->next; 1step agey bdega
+            fast = fast->next->next; 2 step agey bdega
+            if(slow==fast){ jb equal hojayenge mill jayega loop
+                return true;
+            }
+        }
+        return false;
+        }
+        
+ bool firstNode(Node* head)
+ {
+ if(head == NULL)
+ {
+     return false;
+ }
+ Node* intersection = detectLoop(head);
+ Node* slow = head;
+ while(slow!=NULL)
+ {
+      slow = slow->next;
+      intersection = intersection->next;
+ }
+ return slow;
+ }
