@@ -47,3 +47,60 @@ class Solution
         
     }
 };
+
+
+
+Approach 2. Without data replacement.
+
+class Solution
+{
+    public:
+    void upload(Node* &tail,Node* curr)
+    {
+        tail->next = curr;
+        tail = curr;
+    }
+    //Function to sort a linked list of 0s, 1s and 2s.
+    Node* segregate(Node *head) {
+        
+        // Add code here
+        Node* zeroHead = new Node(-1);
+        Node* zeroTail = zeroHead;
+        Node* oneHead = new Node(-1);
+        Node* oneTail = oneHead;
+        Node* secondHead = new Node(-1);
+        Node* secondTail = secondHead;
+        Node* curr = head;
+        while(curr!=NULL)
+        {
+            int value = curr->data;
+            if(value == 0)
+            {
+                upload(zeroTail,curr);
+            }
+            if(value == 1)
+            {
+                upload(oneTail,curr);
+            }
+            if(value == 2)
+            {
+                upload(secondTail,curr);
+            }
+            curr = curr->next;
+        }
+        if(oneHead->next != NULL)
+        {
+            zeroTail->next = oneHead->next;
+        }
+        else{
+            zeroTail->next = secondHead->next;
+        }
+        oneTail->next = secondHead->next;
+        secondTail->next = NULL;
+        head = zeroHead->next;
+        delete zeroHead;
+        delete oneHead;
+        delete secondHead;
+        return head;
+    }
+};
