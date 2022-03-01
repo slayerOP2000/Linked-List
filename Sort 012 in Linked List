@@ -1,0 +1,49 @@
+//Approach 1 - we are traversing the linked list and counting number of zero,one and two and then printing them.
+
+class Solution
+{
+    public:
+    //Function to sort a linked list of 0s, 1s and 2s.
+    Node* segregate(Node *head) {
+        
+        // Add code here
+        int zerocount = 0;
+        int firstcount = 0;
+        int secondcount = 0;
+        Node* temp = head;
+        while(temp!=NULL)
+        {
+            if(temp->data == 0)
+                zerocount++;
+            else if(temp->data == 1)
+                firstcount++;
+            else if(temp->data == 2)
+                secondcount++;
+            temp = temp->next;
+                
+        }
+        temp = head;
+        while(temp!=NULL)
+        {
+            if(zerocount!=0)
+            {
+                temp->data = 0;
+                zerocount--;
+            }
+            else if(firstcount!=0)
+            {
+                temp->data = 1;
+                firstcount--;
+            }
+            else if(secondcount!=0)
+            {
+                temp->data = 2;
+                secondcount--;
+            }
+            temp = temp->next;
+        }
+        return head;
+        
+        
+    }
+};
